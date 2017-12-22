@@ -244,8 +244,8 @@ Let's train a new network from scratch for four epochs and then evaluate it on t
 
 ```{r, echo=TRUE, results='hide'}
 model <- keras_model_sequential() %>% 
-  layer_dense(units = 16, activation = "relu", input_shape = c(10000)) %>% 
-  layer_dense(units = 16, activation = "relu") %>% 
+  layer_dense(units = 16, activation = "tanh", input_shape = c(10000)) %>% 
+  layer_dense(units = 16, activation = "tanh") %>% 
   layer_dense(units = 1, activation = "sigmoid")
 
 model %>% compile(
@@ -254,7 +254,7 @@ model %>% compile(
   metrics = c("accuracy")
 )
 
-model %>% fit(x_train, y_train, epochs = 4, batch_size = 512)
+model %>% fit(x_train, y_train, epochs = 6, batch_size = 512)
 results <- model %>% evaluate(x_test, y_test)
 ```
 
